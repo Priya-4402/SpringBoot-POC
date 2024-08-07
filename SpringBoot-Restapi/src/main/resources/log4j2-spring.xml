@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+           
+              <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %highlight{%-5level} %style{%C{1.}}{bright,yellow}:%msg%n%throwable" />
+        </Console>
+        <SplunkHttp
+                name="splunkhttp"
+                url="http://localhost:8088"
+                token="18969250-2e9b-4789-85ce-d874b4807000"
+                host="localhost"
+                index="splunk_api"
+                type="raw"
+                source="splunk_dev"
+                sourcetype="log4j"
+                messageFormat="text"
+                disableCertificateValidation="true">
+             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %highlight{%-5level} %style{%C{1.}}{bright,yellow}:%msg%n%throwable" />
+        </SplunkHttp>
+<!--  <File name="File" fileName="D:/MyjobbieMS/employer/logs/logkarrr.log">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %highlight{%-5level} %style{%C{1.}}{bright,yellow}:%msg%n%throwable" />
+        </File> -->
+    </Appenders>
+
+    <Loggers>
+        <!-- LOG everything at INFO level -->
+        <Root level="info">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="splunkhttp" />
+              <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
